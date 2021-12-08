@@ -1,0 +1,14 @@
+{% load static %}
+<div class="card me-5 mt-3" style="width: 18rem;">
+    <img  class="card-img-top" src="files/{{ friends_array.image }}"
+    style="width: 275px; height: 200px;"/>
+    <div class="card-body">
+    <h5 class="card-title"><i class="bi bi-file-earmark-person"></i> {{ friends_array.name }} </h5>
+    <p class="card-text"><i class="bi bi-flag"></i> {{ friends_array.country }}</p>
+    <p class="card-text"><i class="bi bi-flag"></i> {{ friends_array.location.city }}</p>
+    <p class="card-text">{{ friends_array.description }}</p>
+    
+    <a href="{% url 'dating-detail' list_of_friends.friend_slug %}"
+     class="btn btn-primary">View Profile</a>
+    </div>
+</div>

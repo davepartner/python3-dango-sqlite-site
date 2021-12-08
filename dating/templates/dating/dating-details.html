@@ -1,0 +1,50 @@
+{% extends 'dating/base/base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Dating detail
+{% endblock %}
+
+{% block site_css %}
+<link rel="stylesheet" href="{% static 'dating/styles/dating-details.css' %}" />
+{% endblock %}
+
+{% block main_heading %}
+    Dating details
+{% endblock %}
+
+{% block body %}
+
+{% if dating_found %}
+     <div class="container text-center mt-5">
+         <img src="{% static 'dating/images/john-doe.jpeg.jpeg' %}" 
+         alt="{{ friend.name }}" style="width: 300px; height: 350px;" />
+         <h1><i class="bi bi-file-earmark-person"></i> {{ friend.name }}</h1>
+         <p><i class="bi bi-flag"></i> Location: {{ friend.country }} </p>
+         <p>Description: {{ friend.description }} </p>
+     </div>
+
+     <div class="container text-center mt-5 mb-5">
+         <h2>Become a facilitator!</h2>
+
+        <form action="{% url 'dating-detail' friend.friend_slug %}" method="POST">
+            {% csrf_token %}
+            <ul>
+                {{ form.as_ul }}
+            </ul>
+            <button type="submit" class="btn btn-primary">Submit</button>
+   
+          </form>
+     </div>
+{% else %}
+
+<div class="container text-center mt-5">
+<h1>Sorry, no results found for this slug. 404</h1>
+<p>{{ error_message }}</p>
+    
+</div>
+
+{% endif %}
+
+{% endblock %}
